@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OxaLabs</title>
+  <meta name="description" content="Applied AI Research.">
+  <link rel="icon" href="./favicon.ico">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <main class="ycode-grid" style="min-height: 100vh; color: #e8e6e0;">
+
+    <!-- ===== Nav (components/ycode-nav.tsx) ===== -->
+    <nav id="ycode-nav" class="ycode-nav fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 transition-all duration-300"
+      style="height: 64px; border-bottom: 1px solid transparent; backdrop-filter: none; -webkit-backdrop-filter: none; background: transparent;">
+      <!-- Logo -->
+      <a href="./index.html" class="flex items-center gap-2.5 group transition-opacity hover:opacity-90">
+        <span class="text-sm font-semibold tracking-wide" style="color: #e8e6e0; font-family: Montserrat, sans-serif;">oxa<span style="color: #ef8445; transition: opacity 0.25s ease;">.</span>labs</span>
+      </a>
+      <!-- Links -->
+      <div class="flex items-center gap-6 md:gap-8">
+        <a href="./index.html" class="nav-link transition-opacity hover:opacity-100"
+          style="letter-spacing: 0.12em; color: #e8e6e0; opacity: 0.65; font-size: 0.7rem; text-transform: uppercase; font-family: Montserrat, sans-serif;">ycode</a>
+        <a href="#" class="nav-link transition-opacity hover:opacity-100"
+          style="letter-spacing: 0.12em; color: #e8e6e0; opacity: 0.65; font-size: 0.7rem; text-transform: uppercase; font-family: Montserrat, sans-serif;">Research</a>
+      </div>
+      <!-- GitHub -->
+      <a href="https://github.com/oxalab" target="_blank" rel="noopener noreferrer" aria-label="OxaLabs on GitHub"
+        class="flex items-center justify-center transition-all"
+        style="width: 34px; height: 34px; border: 1px solid #e8e6e025; border-radius: 6px; background: #e8e6e008; color: #e8e6e0; opacity: 0.8;">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z" />
+        </svg>
+      </a>
+    </nav>
+
+    <!-- ===== Hero ===== -->
+    <section class="relative min-h-[80vh] overflow-hidden mx-auto flex flex-col justify-center lg:justify-start lg:pt-[15vh]" style="width: 100vw;">
+      <div class="divider-gray"></div>
+      <div class="mt-10 px-[5%] lg:px-[27%] flex flex-col lg:flex-row lg:items-start gap-6 lg:gap-8">
+        <!-- Heading + paragraph -->
+        <div class="flex-1">
+          <h1 class="mb-4" style='font-family: "Sagittaire Display", Georgia, serif; font-size: clamp(1rem, 6vw, 4rem); line-height: 0.85; color: #e8e6e0; margin: 0;'>
+            <span class="hero-line" style="font-style: normal; font-weight: 400;">Agentic Coding</span>
+            <br>
+            <span class="hero-line hero-line-2" style="font-style: italic; font-weight: 200;">Is Changing</span>
+          </h1>
+
+          <p class="mt-[4vh] w-full lg:w-[85%]" style="font-size: 1rem; line-height: 1.8; color: #e8e6e0; opacity: 0.5; font-weight: 500;">
+            Ycode is the horizon agent for people who want highly customizable &amp;
+            model agnostic agent that is cost — efficient and flash fast.
+          </p>
+          <br>
+          <p class="w-full lg:w-[85%]" style="font-size: 0.86rem; line-height: 1.8;">
+            Built to run on your terminal, Web-UI and through mobile application.
+            Lightweight &amp; fast, that runs well even with local models.
+          </p>
+
+          <!-- Install terminal -->
+          <div class="mt-6 w-full lg:w-[85%]">
+            <!-- OS tabs -->
+            <div class="flex">
+              <button type="button" data-os="windows" class="os-tab-btn text-[9px] uppercase px-3 py-1.5 transition-colors"
+                style="font-family: Montserrat, sans-serif; letter-spacing: 0.12em; color: white; opacity: 1; background: #000; border: 1px solid #e8e6e040; border-bottom: 1px solid #000; border-radius: 4px 4px 0 0; cursor: pointer;">
+                Windows
+              </button>
+              <button type="button" data-os="macos" class="os-tab-btn text-[9px] uppercase px-3 py-1.5 transition-colors"
+                style="font-family: Montserrat, sans-serif; letter-spacing: 0.12em; color: #e8e6e0; opacity: 0.4; background: transparent; border: 1px solid #e8e6e015; border-bottom: 1px solid #e8e6e015; border-radius: 4px 4px 0 0; cursor: pointer;">
+                macOS
+              </button>
+              <button type="button" data-os="linux" class="os-tab-btn text-[9px] uppercase px-3 py-1.5 transition-colors"
+                style="font-family: Montserrat, sans-serif; letter-spacing: 0.12em; color: #e8e6e0; opacity: 0.4; background: transparent; border: 1px solid #e8e6e015; border-bottom: 1px solid #e8e6e015; border-radius: 4px 4px 0 0; cursor: pointer;">
+                Linux
+              </button>
+            </div>
+            <!-- Terminal line -->
+            <div class="flex items-center gap-3 px-4 py-3" style="background: #000; border: 1px solid #e8e6e040; border-radius: 0 4px 4px 4px;">
+              <span class="flex gap-1 shrink-0" style="color: #e8e6e0;">&gt;</span>
+              <span id="install-prompt" class="text-[11px] shrink-0" style="color: #ef8445; opacity: 0.7; font-family: Montserrat, sans-serif;">PS C:\&gt;</span>
+              <span id="install-cmd" class="install-cmd text-[11px] flex-1 min-w-0 truncate" style="color: #e8e6e0; opacity: 0.85; font-family: Montserrat, sans-serif;">winget install oxalabs.ycode</span>
+              <button type="button" id="copy-btn" class="copy-btn shrink-0" aria-label="Copy install command"
+                style="width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; color: #e8e6e0; background: #e8e6e010; border: 1px solid #e8e6e030; border-radius: 4px; cursor: pointer;">
+                <svg id="copy-icon-copy" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                <svg id="copy-icon-check" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><path d="M20 6 9 17l-5-5"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTAs — beside the text block -->
+        <div class="flex flex-col gap-5 shrink-0 mt-2 lg:mr-[-15%]">
+          <a href="#features" class="btn-scan text-xs uppercase transition-all hover:brightness-130 inline-flex items-center gap-2"
+            style="font-weight: 700; letter-spacing: 0.1em; background: #ef8445; color: #091d1e; padding: 10px 24px; border: 1px solid #ef8445;">
+            Get Started
+            <span style="font-size: 1.2em;">→</span>
+          </a>
+          <a href="#" class="nav-link text-xs uppercase transition-opacity hover:opacity-100" style="color: #e8e6e0; opacity: 0.4; padding: 10px 0;">
+            Documentation
+          </a>
+          <div class="keymap-item">
+            <kbd class="keycap">⌘</kbd>
+            <kbd class="keycap">K</kbd>
+            <span class="keymap-label" style="color: #e8e6e0; opacity: 0.6;">open ycode anywhere</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider-gray"></div>
+    <!-- Poster -->
+    <div class="poster mx-[5%] relative overflow-hidden group"
+      style="background-image: url('./horizontal_poster.jpg'); background-size: cover; background-position: center; min-height: 100px;">
+      <div class="absolute inset-0" style="background: rgba(9,29,30,0.4); transition: opacity 0.5s ease;"></div>
+    </div>
+    <div class="divider-gray"></div>
+
+    <!-- ===== Demo ===== -->
+    <section class="relative mx-auto overflow-hidden" style="width: 100%; max-width: 1400px; min-height: 60vh;">
+      <div class="flex flex-col md:flex-row md:items-stretch px-[4%] gap-6 md:gap-4" style="min-height: 55vh;">
+        <!-- Section 1 — Heading + text (20%) -->
+        <div class="w-full md:w-[21%] flex flex-col justify-center pr-0 md:pr-2">
+          <h3 style='font-family: "Sagittaire Display", Georgia, serif; font-size: clamp(1.2rem, 2vw, 2rem); line-height: 1; color: #e8e6e0; margin: 0; margin-bottom: 0.8rem;'>
+            <span style="font-style: normal; font-weight: 400;">Code at the</span>
+            <br>
+            <span style="font-style: italic; font-weight: 200;">speed of thought</span>
+          </h3>
+          <p style="font-size: 0.7rem; line-height: 1.6; color: #e8e6e0; opacity: 0.4; font-family: Montserrat, sans-serif;">
+            Watch ycode read, reason, and ship in real time.
+          </p>
+        </div>
+
+        <!-- Section 2 — Demo GIF (50%) -->
+        <div class="w-full md:w-[50%] relative flex items-center justify-center">
+          <div class="relative w-full" style="border: 0px solid rgba(232,230,224,0.15); border-radius: 6px; overflow: hidden;">
+            <img src="./gif/demo.gif" alt="ycode demo" class="w-full h-full object-cover">
+          </div>
+        </div>
+
+        <!-- Section 3 — Dummy iPhone screen (30%) -->
+        <div class="w-full md:w-[29%] flex items-center justify-center">
+          <div class="relative" style="width: 100%; max-width: 180px; aspect-ratio: 9 / 19; background: #000; border-radius: 24px; border: 2px solid rgba(232,230,224,0.2); padding: 8px 4px; overflow: hidden;">
+            <!-- Notch -->
+            <div class="absolute top-1.5 left-1/2 -translate-x-1/2" style="width: 40%; height: 14px; background: #000; border-radius: 0 0 10px 10px; z-index: 2;"></div>
+            <!-- Screen content — dummy -->
+            <div class="h-full w-full flex flex-col items-center justify-center gap-2 pt-4">
+              <div style="width: 30%; height: 6px; background: rgba(94,234,212,0.3); border-radius: 3px;"></div>
+              <div style="width: 60%; height: 4px; background: rgba(232,230,224,0.1); border-radius: 2px;"></div>
+              <div style="width: 50%; height: 4px; background: rgba(232,230,224,0.1); border-radius: 2px;"></div>
+              <div style="width: 55%; height: 4px; background: rgba(232,230,224,0.08); border-radius: 2px;"></div>
+              <div style="width: 40%; height: 8px; background: rgba(94,234,212,0.15); border-radius: 3px; margin-top: 4px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Keymap strip — terminal-native cue -->
+      <div class="flex flex-wrap items-center gap-x-6 gap-y-3 px-[4%] pt-8 pb-2">
+        <span class="keymap-item">
+          <kbd class="keycap">⌘</kbd><kbd class="keycap">K</kbd>
+          <span class="keymap-label" style="color: #e8e6e0;">open</span>
+        </span>
+        <span class="keymap-item">
+          <kbd class="keycap">⌘</kbd><kbd class="keycap">↵</kbd>
+          <span class="keymap-label" style="color: #e8e6e0;">accept diff</span>
+        </span>
+        <span class="keymap-item">
+          <kbd class="keycap">⌘</kbd><kbd class="keycap">⇧</kbd><kbd class="keycap">B</kbd>
+          <span class="keymap-label" style="color: #e8e6e0;">sandbox</span>
+        </span>
+        <span class="keymap-item">
+          <kbd class="keycap">[</kbd><kbd class="keycap">]</kbd>
+          <span class="keymap-label" style="color: #e8e6e0;">cycle models</span>
+        </span>
+        <span class="keymap-item">
+          <kbd class="keycap">?</kbd>
+          <span class="keymap-label" style="color: #e8e6e0;">help</span>
+        </span>
+        <span class="keymap-item ml-auto hidden lg:inline-flex">
+          <span style="width: 6px; height: 6px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 6px rgba(74,222,128,0.6);"></span>
+          <span class="keymap-label" style="color: #e8e6e0;">keyboard-first · zero mouse required</span>
+        </span>
+      </div>
+    </section>
+
+    <div class="divider-gray"></div>
+
+    <!-- ===== Features ===== -->
+    <section id="features" class="relative mx-auto overflow-hidden pt-16" style="width: 100%; max-width: 1400px;">
+      <span class="block px-[4%] mb-10" style="color: #e8e6e0; opacity: 0.6; letter-spacing: 0.2em;">
+        <h1 style='font-family: "Sagittaire Display", Georgia, serif; font-size: clamp(2rem, 2vw, 3rem);'>Hallmark</h1>
+      </span>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-9 px-[3%] justify-items-center">
+        <!-- Card 1 -->
+        <div class="relative w-full" style="aspect-ratio: 3 / 4; max-width: 300px;">
+          <div class="absolute top-0 left-0 right-0 p-4 z-10" style="height: 45%;">
+            <p style="font-size: 0.9rem; line-height: 1.5; color: #e8e6e0; opacity: 0.85; font-family: Montserrat, sans-serif; font-weight: 400;">
+              PROMETHEAN FIRE, forged in silicon. Every line of code carries the spark of compressed intelligence — refined, and placed directly in mortal hands.
+            </p>
+          </div>
+          <img src="./illustration2.png" alt="" class="absolute bottom-0 left-0 w-full pointer-events-none" style="object-fit: contain;">
+        </div>
+        <!-- Card 2 -->
+        <div class="relative w-full" style="aspect-ratio: 3 / 4; max-width: 300px;">
+          <div class="absolute top-0 left-0 right-0 p-4 z-10" style="height: 45%;">
+            <p style="font-size: 0.9rem; line-height: 1.5; color: #e8e6e0; opacity: 0.85; font-family: Montserrat, sans-serif; font-weight: 400;">
+              LIKE DAEDALUS WHO BUILT THE LABYRINTH, ycode maps every path through your codebase before the first stone is laid. It does not guess. It engineers.
+            </p>
+          </div>
+          <img src="./illustration3.png" alt="" class="absolute bottom-0 left-0 w-full pointer-events-none" style="object-fit: contain;">
+        </div>
+        <!-- Card 3 -->
+        <div class="relative w-full" style="aspect-ratio: 3 / 4; max-width: 300px;">
+          <div class="absolute top-0 left-0 right-0 p-4 z-10" style="height: 45%;">
+            <p style="font-size: 0.9rem; line-height: 1.5; color: #e8e6e0; opacity: 0.85; font-family: Montserrat, sans-serif; font-weight: 400;">
+              WINGED LIKE HERMES. Tokens flow at the speed of thought — no cloud between you and the forge, no latency in the messenger's flight.
+            </p>
+          </div>
+          <img src="./illustration4.png" alt="" class="absolute bottom-0 left-0 w-full pointer-events-none" style="object-fit: contain;">
+        </div>
+        <!-- Card 4 -->
+        <div class="relative w-full" style="aspect-ratio: 3 / 4; max-width: 300px;">
+          <div class="absolute top-0 left-0 right-0 p-4 z-10" style="height: 45%;">
+            <p style="font-size: 0.9rem; line-height: 1.5; color: #e8e6e0; opacity: 0.85; font-family: Montserrat, sans-serif; font-weight: 400;">
+              ATLAS UNBURDENED. While titans chase scale, we forge the smallest flame that lights the darkest room. Bigger was never the answer.
+            </p>
+          </div>
+          <img src="./illustration5.png" alt="" class="absolute bottom-[-5] left-0 w-full pointer-events-none" style="object-fit: contain;">
+        </div>
+      </div>
+    </section>
+
+    <div class="divider-gray"></div>
+
+    <!-- ===== Journal ===== -->
+    <section class="relative mx-auto overflow-hidden px-[4%] py-16" style="width: 100%; max-width: 1400px;">
+      <div class="flex flex-col md:flex-row md:items-start gap-8 md:gap-6">
+        <!-- Left — section head (35%) -->
+        <div class="w-full md:w-[35%] shrink-0 md:sticky self-start">
+          <h2 style='font-family: "Sagittaire Display", Georgia, serif; font-size: clamp(1.8rem, 2.4vw, 3rem); line-height: 1; color: #e8e6e0; margin: 0; margin-bottom: 1rem;'>
+            <span style="font-style: normal; font-weight: 400;">Notes from</span>
+            <span style="font-style: italic; font-weight: 200;"> the forge</span>
+          </h2>
+          <p class="text-[10px] leading-relaxed md:max-w-[85%] mb-6" style="color: #e8e6e0; opacity: 0.4; font-family: Montserrat, sans-serif;">
+            Research notes and engineering deep-dives from the ycode team.
+          </p>
+          <a href="#" class="nav-link text-[10px] uppercase inline-flex items-center gap-2" style="color: #e8e6e0; opacity: 0.4; letter-spacing: 0.1em;">
+            All posts →
+          </a>
+        </div>
+
+        <!-- Right — posts (65%) -->
+        <div class="w-full md:w-[65%] flex-1 flex flex-col">
+          <a href="#" class="journal-row group flex flex-col md:flex-row md:items-center gap-2 md:gap-5 py-5" style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+            <span class="text-[10px] uppercase md:w-16 shrink-0" style="color: #e8e6e0; opacity: 0.3; letter-spacing: 0.1em; font-family: Montserrat, sans-serif;">2026.08</span>
+            <span class="journal-tag text-[8px] uppercase px-2 py-1 shrink-0" style="color: #ef8445; border: 1px solid #ef844530; width: fit-content; letter-spacing: 0.1em; font-family: Montserrat, sans-serif;">RESEARCH</span>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-sm font-bold uppercase mb-1 transition-colors journal-title" style="color: #e8e6e0; font-family: Montserrat, sans-serif; letter-spacing: 0.05em;">Small Models, Sharp Tools</h3>
+              <p class="text-[10px] leading-relaxed" style="color: #e8e6e0; opacity: 0.35; font-family: Montserrat, sans-serif;">Why 8B parameters beat 400B inside agentic coding loops — and what that means for the terminal.</p>
+            </div>
+            <span class="text-[8px] uppercase shrink-0 hidden md:inline" style="color: #e8e6e0; opacity: 0.25; letter-spacing: 0.1em; font-family: Montserrat, sans-serif;">8 min</span>
+            <span class="text-lg shrink-0 transition-transform group-hover:translate-x-1" style="color: #ef8445; opacity: 0.3;">→</span>
+          </a>
+          <a href="#" class="journal-row group flex flex-col md:flex-row md:items-center gap-2 md:gap-5 py-5" style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+            <span class="text-[10px] uppercase md:w-16 shrink-0" style="color: #e8e6e0; opacity: 0.3; letter-spacing: 0.1em; font-family: Montserrat, sans-serif;">2026.07</span>
+            <span class="journal-tag text-[8px] uppercase px-2 py-1 shrink-0" style="color: #ef8445; border: 1px solid #ef844530; width: fit-content; letter-spacing: 0.1em; font-family: Montserrat, sans-serif;">ENGINEERING</span>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-sm font-bold uppercase mb-1 transition-colors journal-title" style="color: #e8e6e0; font-family: Montserrat, sans-serif; letter-spacing: 0.05em;">The 300ms Agent</h3>
+              <p class="text-[10px] leading-relaxed" style="color: #e8e6e0; opacity: 0.35; font-family: Montserrat, sans-serif;">Latency budgets, speculative decoding, and what sub-second first tokens unlock for human-agent pairing.</p>
+            </div>
+            <span class="text-[8px] uppercase shrink-0 hidden md:inline" style="color: #e8e6e0; opacity: 0.25; letter-spacing: 0.1em; font-family: Montserrat, sans-serif;">6 min</span>
+            <span class="text-lg shrink-0 transition-transform group-hover:translate-x-1" style="color: #ef8445; opacity: 0.3;">→</span>
+          </a>
+          <a href="#" class="journal-row group flex flex-col md:flex-row md:items-center gap-2 md:gap-5 py-5" style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+            <span class="text-[10px] uppercase md:w-16 shrink-0" style="color: #e8e6e0; opacity: 0.3; letter-spacing: 0.1em; font-family: Montserrat, sans-serif;">2026.06</span>
+            <span class="journal-tag text-[8px] uppercase px-2 py-1 shrink-0" style="color: #ef8445; border: 1px solid #ef844530; width: fit-content; letter-spacing: 0.1em; font-family: Montserrat, sans-serif;">ENGINEERING</span>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-sm font-bold uppercase mb-1 transition-colors journal-title" style="color: #e8e6e0; font-family: Montserrat, sans-serif; letter-spacing: 0.05em;">Context Is a Graph</h3>
+              <p class="text-[10px] leading-relaxed" style="color: #e8e6e0; opacity: 0.35; font-family: Montserrat, sans-serif;">Indexing a codebase as a dependency graph changes small-model behavior more than scale does.</p>
+            </div>
+            <span class="text-[8px] uppercase shrink-0 hidden md:inline" style="color: #e8e6e0; opacity: 0.25; letter-spacing: 0.1em; font-family: Montserrat, sans-serif;">11 min</span>
+            <span class="text-lg shrink-0 transition-transform group-hover:translate-x-1" style="color: #ef8445; opacity: 0.3;">→</span>
+          </a>
+          <a href="#" class="journal-row group flex flex-col md:flex-row md:items-center gap-2 md:gap-5 py-5" style="border-bottom: none;">
+            <span class="text-[10px] uppercase md:w-16 shrink-0" style="color: #e8e6e0; opacity: 0.3; letter-spacing: 0.1em; font-family: Montserrat, sans-serif;">2026.05</span>
+            <span class="journal-tag text-[8px] uppercase px-2 py-1 shrink-0" style="color: #ef8445; border: 1px solid #ef844530; width: fit-content; letter-spacing: 0.1em; font-family: Montserrat, sans-serif;">RESEARCH</span>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-sm font-bold uppercase mb-1 transition-colors journal-title" style="color: #e8e6e0; font-family: Montserrat, sans-serif; letter-spacing: 0.05em;">Quantized Without a Cliff</h3>
+              <p class="text-[10px] leading-relaxed" style="color: #e8e6e0; opacity: 0.35; font-family: Montserrat, sans-serif;">Holding coding capability at 4-bit weights. Where the quality drop actually begins — it's later than you think.</p>
+            </div>
+            <span class="text-[8px] uppercase shrink-0 hidden md:inline" style="color: #e8e6e0; opacity: 0.25; letter-spacing: 0.1em; font-family: Montserrat, sans-serif;">9 min</span>
+            <span class="text-lg shrink-0 transition-transform group-hover:translate-x-1" style="color: #ef8445; opacity: 0.3;">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="./js/main.js" defer></script>
+</body>
+</html>
