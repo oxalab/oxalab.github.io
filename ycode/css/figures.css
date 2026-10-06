@@ -1,0 +1,321 @@
+/* Isometric agent figures (computer · agent repair loop · context stack).
+   Ported from anthropic-computer.html: same palette, same class vocabulary.
+   Root variables are scoped to #agent-figures so they never leak into the
+   ycode page theme (which defines its own --accent at :root). */
+
+#agent-figures {
+  --page:#141516; --accent:#d4671a;
+  --body:#141516; --body-top:#141516; --body-recess:#141516;
+  --ink:#3f4347; --detail:#2e3236;
+  --desk:#141516; --desk-top:#141516; --desk-recess:#141516; --desk-detail:#2e3236;
+  --glass:#221a13; --scr:#d9d3c5;
+
+  background-color: var(--page);
+  width: 90%;
+  margin: 0 auto;
+  padding: 48px 0 56px;
+  position: relative;
+}
+/* dashed outline of the whole section band: left/right edges as background
+   layers (border-image can't dash vertical edges off a horizontal gradient),
+   top/bottom edges as pseudo-elements */
+#agent-figures {
+  background-image:
+    repeating-linear-gradient(to bottom, rgba(160,160,160,0.16) 0, rgba(160,160,160,0.16) 4px, transparent 4px, transparent 12px),
+    repeating-linear-gradient(to bottom, rgba(160,160,160,0.16) 0, rgba(160,160,160,0.16) 4px, transparent 4px, transparent 12px);
+  background-position: left top, right top;
+  background-size: 1px 100%, 1px 100%;
+  background-repeat: no-repeat, no-repeat;
+}
+#agent-figures::before, #agent-figures::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; height: 1px;
+  background: repeating-linear-gradient(to right, rgba(160,160,160,0.16) 0, rgba(160,160,160,0.16) 4px, transparent 4px, transparent 12px);
+}
+#agent-figures::before { top: 0; }
+#agent-figures::after { bottom: 0; }
+/* content stays inside the page's 1400px boundary; the rules and the
+   section outline run the full width of the band */
+#agent-figures .af-head,
+#agent-figures .af-grid-wrap {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 3%;
+  padding-right: 3%;
+}
+#agent-figures .af-head { margin-bottom: 40px; }
+/* full-bleed horizontal dashed rules above and below the card row */
+#agent-figures .af-rule {
+  height: 1px;
+  background: repeating-linear-gradient(to right, rgba(160,160,160,0.16) 0, rgba(160,160,160,0.16) 4px, transparent 4px, transparent 12px);
+}
+/* the three cards sit side by side, separated by vertical dashed lines */
+#agent-figures .af-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 0;
+  width: 100%;
+}
+#agent-figures .af-card {
+  width: 100%;
+  margin: 0;
+  padding: 36px 32px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+}
+#agent-figures .af-card + .af-card {
+  border-left: 1px solid;
+  border-image: repeating-linear-gradient(to bottom, rgba(160,160,160,0.16) 0, rgba(160,160,160,0.16) 4px, transparent 4px, transparent 12px) 1;
+}
+#agent-figures .af-tag {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-family: Montserrat, sans-serif;
+  margin: 0;
+}
+#agent-figures .af-copy {
+  font-size: 0.78rem;
+  line-height: 1.7;
+  color: #e8e6e0;
+  opacity: 0.55;
+  font-family: Montserrat, sans-serif;
+  margin: 0;
+}
+#agent-figures svg { display: block; width: 100%; height: auto; }
+#agent-figures svg:focus-visible { outline:1.5px solid var(--accent); outline-offset:6px; border-radius:12px; }
+@media (max-width: 64rem) {
+  #agent-figures { width: 88%; }
+  #agent-figures .af-grid { grid-template-columns: minmax(0, 1fr); }
+  #agent-figures .af-card { padding: 32px 8px; }
+  #agent-figures .af-card + .af-card {
+    border-left: none;
+    border-top: 1px solid;
+    border-image: repeating-linear-gradient(to right, rgba(160,160,160,0.16) 0, rgba(160,160,160,0.16) 4px, transparent 4px, transparent 12px) 1;
+  }
+}
+
+.face { fill:var(--body); stroke:var(--ink); stroke-width:1; vector-effect:non-scaling-stroke; stroke-linejoin:round; }
+.face.top { fill:var(--body-top); }
+.face.recess { fill:var(--body-recess); stroke:var(--detail); }
+.face.glass { fill:var(--glass); }
+.face.glass.hot { stroke:var(--accent); stroke-opacity:.45; }
+.detail { fill:none; stroke:var(--detail); stroke-width:1; vector-effect:non-scaling-stroke; }
+.cart { stroke:var(--ink); }
+.shadow { fill:none; }
+.halo { fill:var(--accent); opacity:0; } .halo.hot { opacity:.55; }
+.led { stroke:none; } .led.hot { fill:var(--accent); }
+.logo path { fill:var(--accent); }
+.scr { fill:var(--scr); font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
+.scr-accent { fill:var(--accent); }
+.wire-under { fill:none; stroke:transparent; stroke-width:3.4; stroke-linecap:round; stroke-linejoin:round; }
+.wire { fill:none; stroke:#3f4347; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; }
+.wire.hot, .wire.lit { stroke:var(--accent); }
+.pulse { fill:none; stroke:var(--accent); stroke-width:2.2; stroke-linecap:round; opacity:0; }
+#stage .pulse { stroke-dasharray:34 966; opacity:.9; animation:run 2.6s linear infinite; }
+@keyframes run { to { stroke-dashoffset:-1000; } }
+.blink { animation:blink 1.1s steps(1) infinite; }
+@keyframes blink { 50% { opacity:0; } }
+.press { cursor:pointer; transition:transform 60ms ease-out; }
+.press.down { transform:translateY(3px); }
+.press.down .face { stroke:var(--accent); }
+#cpu { cursor:pointer; }
+#stage:not(.on) .crt, #stage:not(.on) .halo, #stage:not(.on) .pulse { display:none; }
+#stage:not(.on) .led.hot { fill:#3a3e41; }
+#stage:not(.on) .wire.hot { stroke:#3f4347; }
+#stage:not(.on) .face.glass.hot { stroke:var(--ink); stroke-opacity:1; }
+.desk .face { fill:var(--desk); } .desk .face.top { fill:var(--desk-top); }
+.desk .face.recess { fill:var(--desk-recess); } .desk .detail { stroke:var(--desk-detail); }
+
+/* the stack figure below the terminal: same palette, click highlights */
+.shadow { fill:#0b0c0c; }
+.label { fill:#9a958b; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
+.cnt { fill:var(--accent); font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
+.press.cart:hover .face { stroke:#6b7177; }
+.press.cart.hot .face, .slab.hot .face { stroke:var(--accent); }
+.press.cart.hot .scr-accent { animation:blink .3s steps(1) 4; }
+.pulse.run { stroke-dasharray:60 940; animation:req 1s linear 1 both; }
+@keyframes req {
+  0% { stroke-dashoffset:60; opacity:1; }
+  85% { opacity:1; }
+  100% { stroke-dashoffset:-1000; opacity:0; }
+}
+/* the operations floor: the rack's vocabulary, on the shared theme */
+.genfig .led { fill:#3f4347; }
+.glyph { fill:none; stroke:var(--detail); stroke-width:1; vector-effect:non-scaling-stroke; }
+.port { fill:var(--body-recess); stroke:var(--detail); stroke-width:1; vector-effect:non-scaling-stroke; }
+.bar { fill:var(--accent); }
+.unit.on .glyph { stroke:var(--accent); }
+.unit.on .port { fill:var(--accent); }
+.unit.on .uled { fill:var(--accent); animation:ledblink 1.3s steps(2) infinite; }
+@keyframes ledblink { 50% { opacity:.3; } }
+/* the context vault's cartridges: age as brightness */
+.cled { fill:#3f4347; }
+.cled.hot { fill:var(--accent); }
+.cled.warm { fill:var(--accent); opacity:.5; }
+.cell.hot .cart { stroke:var(--accent); stroke-opacity:.55; }
+/* the agent core's dissection: focus dims the stack, inspected parts glow */
+.layer { transition:opacity .3s; }
+svg.focus .layer { opacity:.5; }
+svg.focus .layer.foc { opacity:1; }
+.comp.hot { stroke:var(--accent); }
+.led.comp.hot { fill:var(--accent); }
+.couple.hot { stroke:var(--accent); }
+.slide { transition:transform .5s cubic-bezier(.32,.72,0,1); }
+.later { display:none; } .later.show { display:inline; }
+@media (prefers-reduced-motion: reduce) {
+  .slide { transition:none; }
+  .unit.on .uled, .blink, .pulse, .pulse.run, .press.cart.hot .scr-accent { animation:none; }
+  .press { transition:none; }
+}
+
+/* the agent repair loop (Fig. 03): self-scoped theme on the board palette —
+   page-colour faces, grey strokes, orange reserved for whatever is live */
+#repair {
+  --body:#141516; --deck:#141516; --line:#3f4347; --detail:#2e3236;
+  --live:#d4671a; --glass:#221a13; --phos:#d9d3c5;
+  --cap:#232527; --cap-ink:#d9d3c5; --ink:#d9d3c5; --muted:#9a958b;
+}
+#repair .face { fill:var(--body); stroke:var(--line); stroke-width:1; vector-effect:non-scaling-stroke; stroke-linejoin:round; }
+#repair .face.top { fill:var(--deck); }
+#repair .face.bezel { fill:var(--deck); }
+#repair .face.glass { fill:var(--glass); stroke:var(--detail); }
+#repair .face.cap { fill:var(--cap); }
+#repair .recess { fill:var(--body); stroke:var(--detail); stroke-width:1; vector-effect:non-scaling-stroke; }
+#repair .detail { fill:none; stroke:var(--detail); stroke-width:1; vector-effect:non-scaling-stroke; }
+#repair .cable { fill:none; stroke:var(--line); stroke-width:3; stroke-linecap:round; }
+#repair .wire { fill:none; stroke:var(--line); stroke-width:2; stroke-linecap:round; }
+#repair .cable.go, #repair .wire.go { stroke:var(--live); stroke-dasharray:30 970; animation:rlpulse .6s linear forwards; }
+@keyframes rlpulse { from { stroke-dashoffset:30; } to { stroke-dashoffset:-1000; } }
+#repair .press { cursor:pointer; transition:transform 60ms ease-out; }
+#repair .press.down { transform:translateY(4px); }
+#repair .press.down .face { stroke:var(--live); }
+#repair .led { fill:none; stroke:var(--detail); }
+#repair .led.on { fill:var(--line); stroke:var(--line); }
+#repair #rl-led-err { fill:var(--live); stroke:var(--live); animation:rlblink 1.1s steps(1) infinite; }
+#repair svg.fixed #rl-led-err { fill:none; stroke:var(--detail); animation:none; }
+#repair text { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
+#repair .scr { fill:var(--phos); }
+#repair .dim { opacity:.55; }
+#repair .hint { animation:rlblink 1.6s steps(1) infinite; }
+#repair .stat { fill:var(--phos); opacity:.7; }
+#repair .badge { font-size:6.5px; fill:var(--muted); letter-spacing:2.5px; }
+#repair .scan { stroke:var(--detail); stroke-width:1; opacity:.12; }
+#repair .term { font-size:6.4px; }
+#repair .mark-p { fill:none; stroke:var(--phos); stroke-width:5; stroke-linecap:round; stroke-linejoin:round; }
+#repair .klabel { font-size:7px; fill:var(--cap-ink); }
+#repair .tri { fill:var(--cap-ink); }
+#repair svg:not(.fixed) .okview { display:none; }
+#repair svg.fixed .errview { display:none; }
+#repair .bnr { fill:none; stroke:var(--live); stroke-dasharray:3 2.2; stroke-width:1; vector-effect:non-scaling-stroke; }
+#repair .bnr-ok { fill:none; stroke:var(--live); stroke-width:1; vector-effect:non-scaling-stroke; }
+#repair .appwin { font-size:5.2px; fill:var(--phos); }
+#repair .appwin.t { font-size:4.8px; opacity:.6; }
+#repair .appwin.h { animation:rlblink 1.6s steps(1) infinite; }
+#repair .skel { opacity:.55; }
+#repair svg:not(.patched) .txt-fix, #repair svg:not(.patched) .gut-fix, #repair svg:not(.patched) .ul-fix,
+#repair svg:not(.patched) .modtxt, #repair svg:not(.patched) .moddot { display:none; }
+#repair svg.patched .txt-bad, #repair svg.patched .gut-bad, #repair svg.patched .ul-bad { display:none; }
+#repair .edtxt { font-size:5.4px; fill:var(--ink); }
+#repair .edgut { font-size:5.4px; fill:var(--muted); text-anchor:end; }
+#repair .edmark { font-size:5.4px; text-anchor:middle; }
+#repair .gut-bad { fill:var(--ink); } #repair .gut-fix { fill:var(--ink); }
+#repair .ul-bad, #repair .ul-fix { stroke-width:1; vector-effect:non-scaling-stroke; }
+#repair .ul-bad { stroke:var(--live); stroke-dasharray:3 2; }
+#repair .ul-fix { stroke:var(--live); }
+#repair .edhead { font-size:5.5px; fill:var(--muted); }
+#repair .moddot { fill:var(--live); }
+#repair .modtxt { font-size:4.6px; fill:var(--ink); }
+#repair .caret { fill:var(--live); display:none; animation:rlblink 1s steps(1) infinite; }
+#repair svg.editing .caret { display:inline; }
+#repair .unit { cursor:pointer; }
+#repair .unit .chip { fill:var(--glass); stroke:var(--detail); stroke-width:1; vector-effect:non-scaling-stroke; }
+#repair .unit .g { font-size:5px; text-anchor:middle; fill:var(--phos); }
+#repair .unit .g-fail, #repair .unit .g-pass, #repair .unit .g-run { display:none; }
+#repair .unit.fail .g-fail { display:inline; animation:rlblink 1.1s steps(1) infinite; }
+#repair .unit.run .g-run { display:inline; animation:rlblink .3s steps(1) infinite; }
+#repair .unit.pass .g-pass { display:inline; }
+#repair .unit.fail .chip { stroke:var(--live); }
+#repair .unit .ulabel { font-size:5.5px; text-anchor:middle; fill:var(--ink); opacity:.7; }
+#repair .unit.pass .ulabel, #repair .unit.fail .ulabel { opacity:1; }
+@keyframes rlblink { 50% { opacity:0; } }
+@media (prefers-reduced-motion: reduce) {
+  #repair .hint, #repair .appwin.h, #repair #rl-led-err,
+  #repair .unit .g-fail, #repair .unit .g-run, #repair .caret { animation:none; }
+  #repair .press { transition:none; }
+  #repair .cable.go, #repair .wire.go { animation:none; stroke-dasharray:none; }
+}
+
+/* the context stack (Fig. 04): self-scoped theme on the board palette */
+#cstack {
+  --body:#141516; --deck:#141516; --line:#3f4347; --detail:#2e3236;
+  --live:var(--accent); --glass:#221a13; --phos:var(--scr);
+  --cap:#232527; --cap-ink:var(--scr); --ink:var(--scr); --muted:#9a958b;
+}
+#cstack .face { fill:var(--body); stroke:var(--line); stroke-width:1; vector-effect:non-scaling-stroke; stroke-linejoin:round; }
+#cstack .face.top { fill:var(--deck); }
+#cstack .face.bezel { fill:var(--deck); }
+#cstack .face.glass { fill:var(--glass); stroke:var(--detail); }
+#cstack .face.cap { fill:var(--cap); }
+#cstack .recess { fill:var(--body); stroke:var(--detail); stroke-width:1; vector-effect:non-scaling-stroke; }
+#cstack .detail { fill:none; stroke:var(--detail); stroke-width:1; vector-effect:non-scaling-stroke; }
+#cstack .cable { fill:none; stroke:var(--line); stroke-width:3; stroke-linecap:round; }
+#cstack .cable.go { stroke:var(--live); stroke-dasharray:30 970; animation:cspulse .55s linear forwards; }
+#cstack .cable.gor { stroke:var(--live); stroke-dasharray:30 970; animation:cspulser .55s linear forwards; }
+@keyframes cspulse { from { stroke-dashoffset:30; } to { stroke-dashoffset:-1000; } }
+@keyframes cspulser { from { stroke-dashoffset:-30; } to { stroke-dashoffset:1000; } }
+#cstack .press { cursor:pointer; transition:transform 60ms ease-out; }
+#cstack .press.down { transform:translateY(4px); }
+#cstack .press.down .face { stroke:var(--live); }
+#cstack .led { fill:none; stroke:var(--detail); }
+#cstack .led.on { fill:var(--line); stroke:var(--line); }
+#cstack #cs-fig.busy #cs-tled { animation:csblink .3s steps(1) infinite; }
+#cstack text { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
+#cstack .scr { fill:var(--phos); }
+#cstack .dim { opacity:.55; }
+#cstack .hint { animation:csblink 1.6s steps(1) infinite; }
+#cstack .stat { fill:var(--phos); opacity:.7; }
+#cstack .badge { font-size:6.5px; fill:var(--muted); letter-spacing:2.5px; }
+#cstack .scan { stroke:var(--detail); stroke-width:1; opacity:.12; }
+#cstack .term { font-size:6.1px; }
+#cstack .klabel { font-size:5.4px; fill:var(--cap-ink); }
+#cstack .tglyph { font-size:5.5px; fill:var(--ink); text-anchor:middle; }
+/* the flying snippet tile */
+#cstack #cs-tile { opacity:0; transition:transform .62s cubic-bezier(.4,.6,.2,1); }
+#cstack #cs-tile.fly { opacity:1; }
+#cstack #cs-tile.nt { transition:none; }
+/* context blocks: slot slide + heat */
+#cstack .blk { transition:transform .5s cubic-bezier(.32,.72,0,1); cursor:pointer; }
+#cstack .blk.out { opacity:0; transition:transform .6s ease-in, opacity .6s ease-in; }
+#cstack .blk.new .in { animation:csbpop .32s ease-out; }
+@keyframes csbpop { from { opacity:0; transform:translateY(7px); } to { opacity:1; transform:translateY(0); } }
+#cstack .bhalo { fill:var(--live); opacity:0; }
+#cstack .bled { fill:var(--detail); opacity:.5; }
+#cstack .blk.hot .bhalo { opacity:.4; }
+#cstack .blk.warm .bhalo { opacity:.16; }
+#cstack .blk.hot .bled { fill:var(--live); opacity:1; }
+#cstack .blk.warm .bled { fill:var(--live); opacity:.45; }
+#cstack .blk.touched .face { stroke:var(--live); }
+#cstack .btxt { font-size:5.2px; fill:var(--ink); }
+#cstack .btag { font-size:4.8px; fill:var(--muted); text-anchor:end; letter-spacing:.5px; }
+#cstack .bglyph { font-size:10px; fill:var(--muted); text-anchor:middle; opacity:.8; }
+/* the dock's aggregate strip (scell: the vault's .cell name is taken) */
+#cstack .scell { fill:none; stroke:var(--detail); stroke-width:1; vector-effect:non-scaling-stroke; }
+#cstack .scell.h { fill:var(--live); stroke:var(--live); }
+#cstack .scell.m { fill:var(--live); stroke:var(--live); opacity:.45; }
+#cstack .scell.c { fill:var(--detail); opacity:.55; }
+#cstack .stript { fill:var(--phos); font-size:5.6px; }
+#cstack .strips { fill:var(--phos); font-size:5px; opacity:.75; }
+@keyframes csblink { 50% { opacity:0; } }
+@media (prefers-reduced-motion: reduce) {
+  #cstack .hint, #cstack #cs-fig.busy #cs-tled { animation:none; }
+  #cstack .press, #cstack .blk, #cstack #cs-tile { transition:none; }
+  #cstack .blk.new .in { animation:none; }
+  #cstack .cable.go, #cstack .cable.gor { animation:none; stroke-dasharray:none; }
+}
